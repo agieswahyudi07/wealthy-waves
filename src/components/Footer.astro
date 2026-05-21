@@ -1,16 +1,16 @@
 ---
-
+import { Image } from "astro:assets";
+import logoImage from "../assets/logo-wealthy-waves.webp";
 ---
 
 <footer class="bg-[#0a0a0c] pt-24 pb-12 px-6 border-t border-white/5">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
     <div class="col-span-1 md:col-span-2">
       <div class="flex items-center gap-3 mb-6">
-        <img
-          src="/images/divisions/logo-wealthy-waves.webp"
+        <Image
+          src={logoImage}
           alt="Wealthy Waves"
-          width="160"
-          height="48"
+          width={160}
           loading="lazy"
           decoding="async"
           class="h-10 md:h-12 w-auto object-contain"
