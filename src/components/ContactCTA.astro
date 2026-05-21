@@ -254,7 +254,7 @@
   </div>
 </section>
 
-<!-- Lead Collector JavaScript -->
+// Lead Collector JavaScript
 <script>
   // MASUKKAN URL GOOGLE APPS SCRIPT WEB APP ANDA DI SINI
   const SHEET_SCRIPT_URL =
@@ -268,16 +268,16 @@
   const divisionSelect = document.getElementById("division") as HTMLSelectElement;
   const waButton = document.getElementById("wa-cta-button") as HTMLAnchorElement;
 
-  if (divisionSelect && waButton) {
-    const waNumbers: Record<string, string> = {
-      "rent-bike": "628112285113",
-      "legacy": "62895421900396",
-      "record": "6289613121385",
-      "pawnshop": "628112285113",
-      "bali-brezee": "6285718534036",
-      "general": "628112285113"
-    };
+  const waNumbers: Record<string, string> = {
+    "rent-bike": "628112285113",
+    "legacy": "62895421900396",
+    "record": "6289613121385",
+    "pawnshop": "628112285113",
+    "bali-brezee": "6285718534036",
+    "general": "628112285113"
+  };
 
+  if (divisionSelect && waButton) {
     divisionSelect.addEventListener("change", (e) => {
       const selected = (e.target as HTMLSelectElement).value;
       const number = waNumbers[selected] || "628112285113";
@@ -289,7 +289,6 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // Cek apakah URL Apps Script sudah diisi
       if (!SHEET_SCRIPT_URL) {
         statusBox.textContent =
           "Harap isi variabel SHEET_SCRIPT_URL di dalam file ContactCTA.astro terlebih dahulu.";
@@ -299,32 +298,35 @@
       }
 
       // Ambil nilai input
-      const nameVal = (document.getElementById("name") as HTMLInputElement)
-        .value;
-      const emailVal = (document.getElementById("email") as HTMLInputElement)
-        .value;
-      const divisionVal = (
-        document.getElementById("division") as HTMLSelectElement
-      ).value;
-      const phoneVal = (document.getElementById("phone") as HTMLInputElement)
-        .value;
-      const messageVal = (
-        document.getElementById("message") as HTMLTextAreaElement
-      ).value;
+      const nameVal = (document.getElementById("name") as HTMLInputElement).value;
+      const emailVal = (document.getElementById("email") as HTMLInputElement).value;
+      const divisionVal = (document.getElementById("division") as HTMLSelectElement).value;
+      const divisionText = divisionSelect.options[divisionSelect.selectedIndex].text;
+      const phoneVal = (document.getElementById("phone") as HTMLInputElement).value;
+      const messageVal = (document.getElementById("message") as HTMLTextAreaElement).value;
 
       // Status loading
       submitBtn.disabled = true;
+      submitBtn.classList.add("opacity-75", "cursor-wait");
       const originalText = submitBtn.textContent;
-      submitBtn.textContent = "Mengirim pesan...";
+      submitBtn.innerHTML = `<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Mengirim pesan...</span>`;
       statusBox.classList.add("hidden");
 
+      // Timeout untuk ganti teks loading
+      const slowRequestTimeout = setTimeout(() => {
+        submitBtn.innerHTML = `<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Memproses... (mohon tunggu)</span>`;
+      }, 5000);
+
+      // Abort controller untuk membatalkan jika terlalu lama (15 detik)
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
       try {
-        // Kirim data ke Apps Script Google Sheets dengan mode no-cors
         await fetch(SHEET_SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
           headers: {
-            "Content-Type": "text/plain;charset=utf-8", // Menghindari isu preflight CORS
+            "Content-Type": "text/plain;charset=utf-8",
           },
           body: JSON.stringify({
             name: nameVal,
@@ -333,21 +335,35 @@
             phone: phoneVal,
             message: messageVal,
           }),
+          signal: controller.signal
         });
 
-        // Karena mode: 'no-cors', request dikirim sukses tanpa hambatan CORS
-        statusBox.textContent =
-          "Terima kasih! Pesan Anda telah berhasil terkirim.";
-        statusBox.className =
-          "p-4 rounded-2xl text-sm font-semibold text-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 block";
+        clearTimeout(slowRequestTimeout);
+        clearTimeout(timeoutId);
+
+        statusBox.textContent = "Terima kasih! Pesan Anda telah berhasil terkirim.";
+        statusBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 block";
         form.reset();
+        
       } catch (err) {
-        statusBox.textContent =
-          "Gagal mengirim pesan. Silakan coba kembali atau hubungi kami langsung via WhatsApp.";
-        statusBox.className =
-          "p-4 rounded-2xl text-sm font-semibold text-center bg-red-500/10 border border-red-500/20 text-red-500 block";
+        clearTimeout(slowRequestTimeout);
+        clearTimeout(timeoutId);
+        
+        // Fallback Ultimate UX: Langsung arahkan ke WhatsApp dengan form yang sudah diisi!
+        statusBox.textContent = "Sistem sedang sibuk. Kami sedang mengarahkan Anda ke WhatsApp untuk melanjutkan...";
+        statusBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 block";
+        
+        const number = waNumbers[divisionVal] || "628112285113";
+        const waText = `Halo Wealthy Waves,\nSaya ingin menghubungi terkait *${divisionText}*.\n\n*Detail Kontak:*\nNama: ${nameVal}\nEmail: ${emailVal}\nTelepon: ${phoneVal}\n\n*Pesan:*\n${messageVal}`;
+        
+        setTimeout(() => {
+          window.open(`https://wa.me/${number}?text=${encodeURIComponent(waText)}`, '_blank');
+          statusBox.textContent = "Gagal via sistem, namun diarahkan ke WhatsApp.";
+        }, 2000);
+        
       } finally {
         submitBtn.disabled = false;
+        submitBtn.classList.remove("opacity-75", "cursor-wait");
         submitBtn.textContent = originalText;
       }
     });
