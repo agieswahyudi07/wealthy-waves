@@ -19,14 +19,14 @@ const clients = [
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16">
       <h2 class="text-xs uppercase tracking-[0.2em] text-yellow-500 font-semibold mb-3 font-display">Kolaborasi & Kemitraan</h2>
-      <p class="text-3xl md:text-4xl font-display font-extrabold text-white">Klien yang Mempercayai Kami</p>
+      <p class="text-3xl md:text-4xl font-display font-extrabold text-white leading-tight">Klien yang Mempercayai Kami</p>
     </div>
     
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center justify-center">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-stretch justify-center">
       {clients.map((client, index) => {
         const delayClass = index % 5 > 0 ? `delay-${(index % 5) * 100}` : '';
         return (
-        <div class={`glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-white/5 hover:border-yellow-500/30 transition-all duration-500 group relative h-48 magnetic-card reveal ${delayClass}`}>
+        <div class={`glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-white/5 hover:border-yellow-500/30 transition-all duration-500 group relative h-full min-h-[12rem] magnetic-card reveal ${delayClass}`}>
           {/* Background glowing effect */}
           <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/0 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           
@@ -35,6 +35,10 @@ const clients = [
             <img 
               src={client.logo} 
               alt={client.name} 
+              width="96"
+              height="96"
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-contain relative z-10 transition-opacity duration-300 opacity-80 group-hover:opacity-100"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
             />

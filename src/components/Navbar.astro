@@ -18,6 +18,11 @@ const navItems = [
         <img
           src="/images/divisions/logo-wealthy-waves.webp"
           alt="Wealthy Waves"
+          width="160"
+          height="48"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
           class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
         />
         <span
@@ -104,42 +109,44 @@ const navItems = [
 </nav>
 
 <script>
-  const menuBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const hamburgerIcon = document.getElementById("hamburger-icon");
-  const closeIcon = document.getElementById("close-icon");
+  document.addEventListener('astro:page-load', () => {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerIcon = document.getElementById("hamburger-icon");
+    const closeIcon = document.getElementById("close-icon");
 
-  if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
-    menuBtn.addEventListener("click", () => {
-      const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
+    if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
+      menuBtn.addEventListener("click", () => {
+        const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
+        menuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
 
-      if (isExpanded) {
-        mobileMenu.classList.add("hidden");
-        hamburgerIcon.classList.remove("hidden");
-        hamburgerIcon.classList.add("block");
-        closeIcon.classList.remove("block");
-        closeIcon.classList.add("hidden");
-      } else {
-        mobileMenu.classList.remove("hidden");
-        hamburgerIcon.classList.remove("block");
-        hamburgerIcon.classList.add("hidden");
-        closeIcon.classList.remove("hidden");
-        closeIcon.classList.add("block");
-      }
-    });
-
-    // Close menu when clicking a link
-    const links = mobileMenu.querySelectorAll("a");
-    links.forEach((link) => {
-      link.addEventListener("click", () => {
-        menuBtn.setAttribute("aria-expanded", "false");
-        mobileMenu.classList.add("hidden");
-        hamburgerIcon.classList.remove("hidden");
-        hamburgerIcon.classList.add("block");
-        closeIcon.classList.remove("block");
-        closeIcon.classList.add("hidden");
+        if (isExpanded) {
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          hamburgerIcon.classList.add("block");
+          closeIcon.classList.remove("block");
+          closeIcon.classList.add("hidden");
+        } else {
+          mobileMenu.classList.remove("hidden");
+          hamburgerIcon.classList.remove("block");
+          hamburgerIcon.classList.add("hidden");
+          closeIcon.classList.remove("hidden");
+          closeIcon.classList.add("block");
+        }
       });
-    });
-  }
+
+      // Close menu when clicking a link
+      const links = mobileMenu.querySelectorAll("a");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuBtn.setAttribute("aria-expanded", "false");
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          hamburgerIcon.classList.add("block");
+          closeIcon.classList.remove("block");
+          closeIcon.classList.add("hidden");
+        });
+      });
+    }
+  });
 </script>
