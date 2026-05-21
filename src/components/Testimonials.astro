@@ -1,0 +1,38 @@
+---
+const testimonials = [
+  { name: "John Doe", role: "CEO", content: "Layanan yang luar biasa dan hasil yang sangat memuaskan!", image: "https://i.pravatar.cc/150?u=1" },
+  { name: "Jane Smith", role: "Designer", content: "Kreativitas mereka benar-benar membantu brand kami naik kelas.", image: "https://i.pravatar.cc/150?u=2" },
+  { name: "Alice Johnson", role: "Influencer", content: "Sangat profesional dan tepat waktu dalam pengerjaan video.", image: "https://i.pravatar.cc/150?u=3" }
+];
+---
+
+<section class="py-24 px-6 max-w-7xl mx-auto">
+  <h2 class="text-center text-3xl font-bold text-yellow-500 mb-16">What Our Clients Say</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {testimonials.map((t) => (
+      <div class="bg-[#151619] p-8 rounded-[2rem] border border-white/5 relative">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-6 right-8 text-yellow-500/10">
+          <path d="M16 8a4 4 0 1 0 4 4v-2a2 2 0 0 0-2-2h-2Z"></path>
+          <path d="M6 8a4 4 0 1 0 4 4v-2a2 2 0 0 0-2-2H6Z"></path>
+          <path d="M21 16V8a2 2 0 0 0-2-2h-2"></path>
+          <path d="M11 16V8a2 2 0 0 0-2-2H7"></path>
+        </svg>
+        <div class="flex gap-1 mb-6">
+          {Array.from({ length: 5 }).map(() => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fill-yellow-500 text-yellow-500">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          ))}
+        </div>
+        <p class="text-white/70 mb-8 italic">"{t.content}"</p>
+        <div class="flex items-center gap-4">
+          <img src={t.image} class="w-10 h-10 rounded-full object-cover" alt={t.name} />
+          <div>
+            <h4 class="font-bold text-sm">{t.name}</h4>
+            <p class="text-xs text-yellow-500">{t.role}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

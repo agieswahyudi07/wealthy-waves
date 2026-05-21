@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Services from "../components/Services.astro";
+import Solutions from "../components/Solutions.astro";
+import Portfolio from "../components/Portfolio.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Divisi Bisnis - Wealthy Waves Group"
+  description="Tiga unit usaha kami: Wealthy Rent Bike Bali, Wealthy Records untuk produksi musik, dan Wealthy Legacy untuk video branding."
+>
+  <Navbar />
+
+  <main class="pt-40">
+    <!-- Header Page -->
+    <section class="pb-12 px-6 text-center max-w-5xl mx-auto animate-fade-in">
+      <span
+        class="text-yellow-500 uppercase tracking-widest text-xs font-bold block mb-4 font-display"
+        >Divisi Bisnis</span
+      >
+      <h1
+        class="text-4xl md:text-6xl font-display font-extrabold text-white mb-6"
+      >
+        Pemberi Solusi Multisektor
+      </h1>
+      <p class="text-white/60 text-lg leading-relaxed max-w-3xl mx-auto">
+        Kami mengelola tiga divisi utama yang beroperasi secara profesional
+        untuk menghadirkan kemudahan mobilitas, keunggulan suara, serta dampak
+        kekuatan visual.
+      </p>
+    </section>
+
+    <!-- Services (Rent Bike, Records, LEgacy) -->
+    <Services />
+
+    <!-- Solutions (Creator & Brand Packages) -->
+    <Solutions />
+
+    <!-- Portfolio -->
+    <Portfolio />
+  </main>
+
+  <Footer />
+</Layout>

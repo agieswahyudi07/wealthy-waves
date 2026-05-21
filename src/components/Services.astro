@@ -1,0 +1,238 @@
+---
+const services = [
+  {
+    title: "Wealthy Rent Bike",
+    description:
+      "Penyewaan motor di Bali yang menargetkan wisatawan domestik dan internasional.",
+    buttonText: "Sewa Motor di Bali Sekarang",
+    icon: "bike",
+    image: "/images/divisions/logo-wealthy-rent-bike.webp",
+    whatsapp: "628112285113",
+    instagram: "https://www.instagram.com/wealthy_rent_bike?igsh=dHIwa2RkemkyNmEy",
+  },
+  {
+    title: "Wealthy Records",
+    description: "Label rekaman dan studio produksi musik profesional.",
+    buttonText: "Mulai Rekam Musik Anda",
+    icon: "music",
+    image: "https://picsum.photos/seed/music-studio/800/600",
+    whatsapp: "6289613121385",
+    instagram: "https://www.instagram.com/wealthyrecordsofficial?igsh=M3RsMWU3OHByM2Ex",
+  },
+  {
+    title: "Wealthy Legacy",
+    description:
+      "Studio produksi video dan jasa branding untuk perusahaan dan individu.",
+    buttonText: "Buat Video Brand Anda",
+    icon: "video",
+    image: "/images/divisions/logo-wealthy-legacy.webp",
+    whatsapp: "62895421900396",
+    instagram: "https://www.instagram.com/wealthylegacy.id?igsh=MWZocnJ6bWxzNnd3cw==",
+  },
+  {
+    title: "Wealthy Pawnshop",
+    description:
+      "Layanan gadai profesional dengan proses pendanaan yang cepat, aman, dan transparan.",
+    buttonText: "Konsultasi Gadai",
+    icon: "bank",
+    image: "/images/divisions/logo-wealthy-pawnshop.webp",
+    whatsapp: "628112285113",
+  },
+  {
+    title: "Wealthy Clean Bike Bali",
+    description:
+      "Layanan cuci dan perawatan motor premium yang menjamin kebersihan kendaraan Anda.",
+    buttonText: "Cuci Motor Sekarang",
+    icon: "bike",
+    image: "https://picsum.photos/seed/clean-bike/800/600",
+    whatsapp: "628112285113",
+    instagram: "https://www.instagram.com/wealthy_clean_bike_bali?igsh=MTFoc2diM200cnRpbA==",
+  },
+  {
+    title: "Bali Brezee",
+    description:
+      "Lini bisnis gaya hidup tropis yang menghadirkan nuansa premium dan eksklusif khas Bali.",
+    buttonText: "Jelajahi Sekarang",
+    icon: "sun",
+    image: "/images/divisions/logo-bali-breeze.webp",
+    whatsapp: "6285718534036",
+    instagram: "https://www.instagram.com/arakbalibrezee?igsh=MW5pcDM0bjZha3A4Nw==",
+  },
+];
+---
+
+<section id="division" class="py-24 px-6 bg-[#0a0a0c]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4">
+        Layanan Kami
+      </h2>
+      <p class="text-white/60 max-w-3xl mx-auto">
+        Wealthy Waves Group hadir sebagai solusi lengkap untuk mobilitas,
+        produksi kreatif, dan branding.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        services.map((service, index) => {
+          const delayClass =
+            index % 3 === 1 ? "delay-100" : index % 3 === 2 ? "delay-200" : "";
+          return (
+            <div
+              class={`bg-[#151619] rounded-3xl border border-white/5 p-8 transition-transform duration-300 hover:-translate-y-2.5 magnetic-card reveal ${delayClass}`}
+            >
+              <img
+                src={service.image}
+                class="w-full h-48 object-contain bg-white/5 rounded-2xl mb-6 p-4"
+                alt={service.title}
+              />
+              <div class="mb-4">
+                {service.icon === "bike" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-yellow-500"
+                  >
+                    <circle cx="5.5" cy="17.5" r="3.5" />
+                    <circle cx="18.5" cy="17.5" r="3.5" />
+                    <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2" />
+                  </svg>
+                )}
+                {service.icon === "music" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-yellow-500"
+                  >
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                  </svg>
+                )}
+                {service.icon === "video" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-yellow-500"
+                  >
+                    <path d="m22 8-6 4 6 4V8Z" />
+                    <rect width="14" height="12" x="2" y="6" rx="2" ry="2" />
+                  </svg>
+                )}
+                {service.icon === "shield" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-yellow-500"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                )}
+                {service.icon === "bank" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-yellow-500"
+                  >
+                    <rect width="20" height="12" x="2" y="7" rx="2" />
+                    <path d="M12 22v-3" />
+                    <path d="M8 22v-3" />
+                    <path d="M16 22v-3" />
+                    <path d="M2 22h20" />
+                    <path d="m12 2-6 5h12z" />
+                  </svg>
+                )}
+                {service.icon === "sun" && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-yellow-500"
+                  >
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2" />
+                    <path d="M12 20v2" />
+                    <path d="m4.93 4.93 1.41 1.41" />
+                    <path d="m17.66 17.66 1.41 1.41" />
+                    <path d="M2 12h2" />
+                    <path d="M20 12h2" />
+                    <path d="m6.34 17.66-1.41 1.41" />
+                    <path d="m19.07 4.93-1.41 1.41" />
+                  </svg>
+                )}
+              </div>
+              <h3 class="text-2xl font-bold mb-3">{service.title}</h3>
+              <p class="text-white/60 mb-8">{service.description}</p>
+              <div class="flex gap-2">
+                <a
+                  href={`https://wa.me/${service.whatsapp}?text=${encodeURIComponent(`Halo tim ${service.title}, saya ingin bertanya tentang layanan Anda.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 py-4 bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 font-bold rounded-2xl hover:bg-yellow-500 hover:text-black transition-all cursor-pointer flex items-center justify-center text-center"
+                >
+                  {service.buttonText}
+                </a>
+                {service.instagram && (
+                  <a
+                    href={service.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-14 shrink-0 bg-white/5 border border-white/10 text-white rounded-2xl hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all cursor-pointer flex items-center justify-center"
+                    aria-label={`Instagram ${service.title}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+---
+const clients = [
+  { name: "Ultimate Cat Cafe", logo: "/images/clients/logo-ultimate-cat-cafe.webp", initial: "UC" },
+  { name: "Ultimate Residence", logo: "/images/clients/logo-ultimate-residence.webp", initial: "UR" },
+  { name: "Kuta Dental", logo: "/images/clients/logo-kuta-dental.webp", initial: "KD" },
+  { name: "Al Bayt Restaurant", logo: "/images/clients/logo-al-bayt-hitam.webp", initial: "AB" },
+  { name: "Kana88 Bali", logo: "/images/clients/logo-kana88.webp", initial: "K8" },
+  { name: "Kooko Paw", logo: "/images/clients/logo-kookopaw.webp", initial: "KP" },
+  { name: "Zaitun Arabian Food", logo: "/images/clients/logo-arabian-food-zaitun.webp", initial: "ZF" },
+  { name: "Ayam Geprek Nenek", logo: "/images/clients/logo-geprek-nenek.webp", initial: "AG" },
+  { name: "Bali Beach Glamping", logo: "/images/clients/logo-bali-beach-glamping.webp", initial: "BB" }
+];
+---
+
+<section class="py-24 px-6 bg-gradient-to-b from-[#0a0a0c] to-[#0e0f11] relative overflow-hidden">
+  <!-- Decorative background glow -->
+  <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-xs uppercase tracking-[0.2em] text-yellow-500 font-semibold mb-3 font-display">Kolaborasi & Kemitraan</h2>
+      <p class="text-3xl md:text-4xl font-display font-extrabold text-white">Klien yang Mempercayai Kami</p>
+    </div>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center justify-center">
+      {clients.map((client, index) => {
+        const delayClass = index % 5 > 0 ? `delay-${(index % 5) * 100}` : '';
+        return (
+        <div class={`glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-white/5 hover:border-yellow-500/30 transition-all duration-500 group relative h-48 magnetic-card reveal ${delayClass}`}>
+          {/* Background glowing effect */}
+          <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/0 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <!-- Logo Image Slot / Text Fallback -->
+          <div class="relative w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 p-3">
+            <img 
+              src={client.logo} 
+              alt={client.name} 
+              class="w-full h-full object-contain relative z-10 transition-opacity duration-300 opacity-80 group-hover:opacity-100"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            />
+            {/* Styled initial fallback */}
+            <span class="text-yellow-500 font-bold text-sm tracking-wide font-display absolute hidden">{client.initial}</span>
+          </div>
+
+          <span class="text-xs font-semibold text-white/80 group-hover:text-white transition-colors duration-300 text-center line-clamp-2">
+            {client.name}
+          </span>
+        </div>
+        )
+      })}
+    </div>
+  </div>
+</section>

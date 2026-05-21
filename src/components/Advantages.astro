@@ -1,0 +1,117 @@
+---
+const advantages = [
+  { title: "One-Stop Creative & Mobility Solution", icon: "zap" },
+  { title: "Fleksibel di Berbagai Kondisi", icon: "target" },
+  { title: "Story-Driven Production", icon: "check" },
+  { title: "Profesional & Tepat Waktu", icon: "clock" },
+  { title: "Audio & Visual Berkualitas Tinggi", icon: "award" },
+];
+---
+
+<section
+  class="py-24 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+>
+  <div class="rounded-3xl overflow-hidden aspect-square">
+    <img
+      src="https://picsum.photos/seed/team/1000/1000"
+      class="w-full h-full object-cover"
+      alt="Our Team / Advantages Image"
+    />
+  </div>
+  <div>
+    <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-12">
+      Keunggulan Kami
+    </h2>
+    <div class="space-y-8">
+      {
+        advantages.map((item) => (
+          <div class="flex items-center gap-6 group">
+            <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-black transition-all duration-300">
+              {item.icon === "zap" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              )}
+              {item.icon === "target" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              )}
+              {item.icon === "check" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              )}
+              {item.icon === "clock" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              )}
+              {item.icon === "award" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="8" r="7" />
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                </svg>
+              )}
+            </div>
+            <span class="text-lg font-medium text-white/80">{item.title}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,145 @@
+---
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about-us" },
+  { name: "Services", href: "/division" },
+  { name: "Career", href: "/career" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact Us", href: "/#contact" },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 animate-slide-down">
+  <div class="max-w-7xl mx-auto relative">
+    <div
+      class="flex items-center justify-between glass-card px-8 py-4 rounded-full"
+    >
+      <a href="/" class="flex items-center gap-3 group">
+        <img
+          src="/images/divisions/logo-wealthy-waves.webp"
+          alt="Wealthy Waves"
+          class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+        />
+        <span
+          class="font-display font-bold text-xl hidden sm:block text-white transition-colors group-hover:text-yellow-500"
+          >Wealthy Waves</span
+        >
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div
+        class="hidden md:flex items-center gap-8 text-sm font-medium text-white/70"
+      >
+        {
+          navItems.map((item) => (
+            <a href={item.href} class="hover:text-yellow-500 transition-colors">
+              {item.name}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Hamburger Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden text-white hover:text-yellow-500 transition-colors p-1 focus:outline-none cursor-pointer"
+        aria-label="Toggle Menu"
+        aria-expanded="false"
+      >
+        <!-- Hamburger Icon -->
+        <svg
+          id="hamburger-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="block"
+        >
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+        <!-- Close Icon -->
+        <svg
+          id="close-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="hidden"
+        >
+          <line x1="18" x2="6" y1="6" y2="18"></line>
+          <line x1="6" x2="18" y1="6" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div
+      id="mobile-menu"
+      class="hidden absolute top-full left-0 right-0 mt-2 glass-card p-6 rounded-[2rem] flex flex-col gap-2 text-center border border-white/5 md:hidden animate-fade-in"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-white/80 hover:text-yellow-500 py-3 text-base font-medium transition-colors border-b border-white/5 last:border-0"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  if (menuBtn && mobileMenu && hamburgerIcon && closeIcon) {
+    menuBtn.addEventListener("click", () => {
+      const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
+      menuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      if (isExpanded) {
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        hamburgerIcon.classList.add("block");
+        closeIcon.classList.remove("block");
+        closeIcon.classList.add("hidden");
+      } else {
+        mobileMenu.classList.remove("hidden");
+        hamburgerIcon.classList.remove("block");
+        hamburgerIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        closeIcon.classList.add("block");
+      }
+    });
+
+    // Close menu when clicking a link
+    const links = mobileMenu.querySelectorAll("a");
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        menuBtn.setAttribute("aria-expanded", "false");
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        hamburgerIcon.classList.add("block");
+        closeIcon.classList.remove("block");
+        closeIcon.classList.add("hidden");
+      });
+    });
+  }
+</script>
