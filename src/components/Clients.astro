@@ -1,14 +1,26 @@
 ---
+import { Image } from "astro:assets";
+
+import logoCatCafe from "../assets/clients/logo-ultimate-cat-cafe.webp";
+import logoResidence from "../assets/clients/logo-ultimate-residence.webp";
+import logoKutaDental from "../assets/clients/logo-kuta-dental.webp";
+import logoAlBayt from "../assets/clients/logo-al-bayt-hitam.webp";
+import logoKana88 from "../assets/clients/logo-kana88.webp";
+import logoKookoPaw from "../assets/clients/logo-kookopaw.webp";
+import logoZaitun from "../assets/clients/logo-arabian-food-zaitun.webp";
+import logoAyamGeprek from "../assets/clients/logo-geprek-nenek.webp";
+import logoBaliBeach from "../assets/clients/logo-bali-beach-glamping.webp";
+
 const clients = [
-  { name: "Ultimate Cat Cafe", logo: "/images/clients/logo-ultimate-cat-cafe.webp", initial: "UC" },
-  { name: "Ultimate Residence", logo: "/images/clients/logo-ultimate-residence.webp", initial: "UR" },
-  { name: "Kuta Dental", logo: "/images/clients/logo-kuta-dental.webp", initial: "KD" },
-  { name: "Al Bayt Restaurant", logo: "/images/clients/logo-al-bayt-hitam.webp", initial: "AB" },
-  { name: "Kana88 Bali", logo: "/images/clients/logo-kana88.webp", initial: "K8" },
-  { name: "Kooko Paw", logo: "/images/clients/logo-kookopaw.webp", initial: "KP" },
-  { name: "Zaitun Arabian Food", logo: "/images/clients/logo-arabian-food-zaitun.webp", initial: "ZF" },
-  { name: "Ayam Geprek Nenek", logo: "/images/clients/logo-geprek-nenek.webp", initial: "AG" },
-  { name: "Bali Beach Glamping", logo: "/images/clients/logo-bali-beach-glamping.webp", initial: "BB" }
+  { name: "Ultimate Cat Cafe", logo: logoCatCafe, initial: "UC" },
+  { name: "Ultimate Residence", logo: logoResidence, initial: "UR" },
+  { name: "Kuta Dental", logo: logoKutaDental, initial: "KD" },
+  { name: "Al Bayt Restaurant", logo: logoAlBayt, initial: "AB" },
+  { name: "Kana88 Bali", logo: logoKana88, initial: "K8" },
+  { name: "Kooko Paw", logo: logoKookoPaw, initial: "KP" },
+  { name: "Zaitun Arabian Food", logo: logoZaitun, initial: "ZF" },
+  { name: "Ayam Geprek Nenek", logo: logoAyamGeprek, initial: "AG" },
+  { name: "Bali Beach Glamping", logo: logoBaliBeach, initial: "BB" }
 ];
 ---
 
@@ -32,11 +44,10 @@ const clients = [
           
           <!-- Logo Image Slot / Text Fallback -->
           <div class="relative w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 p-3">
-            <img 
+            <Image 
               src={client.logo} 
               alt={client.name} 
-              width="96"
-              height="96"
+              width={96}
               loading="lazy"
               decoding="async"
               class="w-full h-full object-contain relative z-10 transition-opacity duration-300 opacity-80 group-hover:opacity-100"
