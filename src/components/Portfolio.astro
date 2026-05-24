@@ -1,28 +1,41 @@
 ---
+import { Image } from "astro:assets";
+import imgBaliBreeze from "../assets/showcase/bali-breeze-image.jpeg";
+import imgLegacy from "../assets/showcase/walthy-legacy-image.jpeg";
+import imgCleanBike from "../assets/showcase/wealthy-clean-bike-bali-image.jpeg";
+import imgRecords from "../assets/showcase/wealthy-records-image.jpeg";
+import imgRentBike from "../assets/showcase/wealthy-rent-bike-image.jpeg";
+
 const portfolioItems = [
   {
     id: "01",
-    category: "PORTRAIT",
-    title: "Creative Portrait Session",
-    image: "https://picsum.photos/seed/portrait/800/1000",
+    category: "RENT BIKE",
+    title: "Wealthy Rent Bike",
+    image: imgRentBike,
   },
   {
     id: "02",
-    category: "PRODUCT",
-    title: "Minimalist Product Design",
-    image: "https://picsum.photos/seed/product/800/600",
+    category: "RECORDS",
+    title: "Wealthy Records",
+    image: imgRecords,
   },
   {
     id: "03",
-    category: "SERVICES",
-    title: "Corporate Branding",
-    image: "https://picsum.photos/seed/branding/800/600",
+    category: "LEGACY",
+    title: "Wealthy Legacy",
+    image: imgLegacy,
   },
   {
     id: "04",
-    category: "PHOTOGRAPHY",
-    title: "Urban Exploration",
-    image: "https://picsum.photos/seed/urban/800/1000",
+    category: "CLEAN BIKE",
+    title: "Wealthy Clean Bike Bali",
+    image: imgCleanBike,
+  },
+  {
+    id: "05",
+    category: "BALI BREEZE",
+    title: "Bali Breeze",
+    image: imgBaliBreeze,
   },
 ];
 ---
@@ -82,11 +95,10 @@ const portfolioItems = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {
         portfolioItems.map((item) => (
-          <div class="group relative rounded-3xl overflow-hidden aspect-[3/4] cursor-pointer transition-transform duration-300 hover:scale-[1.02] border border-white/5">
-            <img
+          <div class="group relative rounded-3xl overflow-hidden aspect-video cursor-pointer transition-transform duration-300 hover:scale-[1.02] border border-white/5 shadow-lg">
+            <Image
               src={item.image}
-              width="800"
-              height="1000"
+              width={800}
               loading="lazy"
               decoding="async"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

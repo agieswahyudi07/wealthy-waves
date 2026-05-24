@@ -1,14 +1,20 @@
 ---
+import { Image } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Advantages from '../components/Advantages.astro';
 import Footer from '../components/Footer.astro';
 
+import imgDivi from '../assets/team/divi.webp';
+import imgLouis from '../assets/team/louis-keaton.webp';
+import imgIbnu from '../assets/team/ibnu-borneo.webp';
+import imgYoga from '../assets/team/jendral-yoga.webp';
+
 const management = [
-  { name: "Divi", role: "Direktur Utama", image: "/images/team/divi.webp", initial: "D" },
-  { name: "Louis Keaton Armandio", role: "Wakil Direktur Utama", image: "/images/team/louis-keaton.webp", initial: "LA" },
-  { name: "Ibnu Borneo", role: "Komisaris", image: "/images/team/ibnu-borneo.webp", initial: "IB" },
-  { name: "Jendral Yoga", role: "Komisaris", image: "/images/team/jendral-yoga.webp", initial: "JY" },
+  { name: "Divi", role: "Direktur Utama", image: imgDivi, initial: "D" },
+  { name: "Louis Keaton Armandio", role: "Wakil Direktur Utama", image: imgLouis, initial: "LA" },
+  { name: "Ibnu Borneo", role: "Komisaris", image: imgIbnu, initial: "IB" },
+  { name: "Jendral Yoga", role: "Komisaris", image: imgYoga, initial: "JY" },
 ];
 
 const journey = [
@@ -114,15 +120,13 @@ const journey = [
             <div class={`glass-card p-5 w-[45%] sm:w-[30%] lg:w-[18%] rounded-2xl text-left border border-white/5 hover:border-yellow-500/30 transition-all duration-300 group magnetic-card reveal ${delayClass}`}>
               <!-- Avatar Slot -->
               <div class="relative w-full aspect-square mb-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden group-hover:scale-105 group-hover:border-yellow-500/30 transition-all duration-300">
-                <img 
+                <Image 
                   src={member.image} 
                   alt={member.name} 
-                  width="300"
-                  height="300"
+                  width={300}
                   loading="lazy"
                   decoding="async"
                   class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-110"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
                 />
                 <span class="text-2xl font-bold text-yellow-500 tracking-wide font-display absolute hidden">{member.initial}</span>
               </div>
